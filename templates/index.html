@@ -1,0 +1,279 @@
+<html>
+<head>
+	<title>Claremont Confession Generator</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Londrina+Solid|Londrina+Outline' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+	body {
+		background: #fff;
+	}
+	a {
+		text-decoration: none;
+	}
+	#container {
+		background: rgb(80,80,150);
+		border-radius: 10px;
+		width: 900px;
+		padding-bottom: 20px;
+		margin: 20px auto;
+		overflow: hidden;
+	}
+	#header {
+		font-size: 60px;
+		text-align: center;
+		color: #fff;
+		letter-spacing: 2px;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+		border-bottom: 5px solid rgb(50,50,120);
+		background: black;
+	}
+	#header a {
+		text-decoration: none;
+		color: #fff;
+	}
+	.titleA {
+		font-family: 'Londrina Outline', cursive;
+	}
+	.titleB {
+		font-family: 'Londrina Solid', cursive;
+	}
+
+	#button {
+		width: 350px;
+		height: 40px;
+		border: 3px solid rgb(250,200,200);
+		background: rgb(250,170,40);
+		font-family: 'Londrina Solid', cursive;
+		font-size: 36px;
+		text-align: center;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		color: #fff;
+		float: left;
+		margin-left: 50px;
+		margin-bottom: 30px;
+		margin-top: 30px;
+		cursor: hand;
+	}
+
+	#startinfo h2 {
+		font-size: 72px;
+		line-height: 36px;
+		margin-bottom: 0px;
+	}
+	.confession {
+		width: 700px;
+		height: auto;
+		background-color: #fff;
+		margin-top:120px;
+		margin-left: auto;
+		margin-right: auto;
+		border: 3px solid #000;
+		padding: 15px;
+		font-family: 'lucida grande';
+		font-size: 16px
+	}
+	.con-name {
+		font-weight: bold;
+		float: left;
+		margin-left: 10px;
+		color: #3b5998;
+	}
+	.con-pic {
+		width: 36px;
+		height: 36px;
+		float: left;
+		background-image: url('http://reidbm.com/img/thumbnail.jpg');
+		background-size: 36px 36px;
+	}
+	.con-date {
+		font-size: 14px;
+		float: left;
+		margin-left: 10px;
+		color: #898f9c;
+	}
+	.con-globe {
+		float: left;
+		margin-left: 5px;
+		margin-top: 2px;
+		height: 12px;
+		width: 12px;
+		background-image: url('http://reidbm.com/img/globe.png');
+		background-size: 12px 12px;
+	}
+	.con-text {
+		line-height: 20px;
+	}
+	.con-likes {
+		display: inline-block;
+		background-color: #f6f7f8;
+		background-image: url('http://reidbm.com/img/like.png');
+		background-size: 16px 16px;
+		background-repeat: no-repeat;
+		background-position: 10px 4px;
+		font-size: 12px;
+		padding-left: 30px;
+		padding-right: 10px;
+		padding-top: 5px;
+		padding-bottom: 10px;
+		margin-left: -10px;
+		margin-top: 10px;
+		margin-bottom: 0px;
+		width: 680px;
+	}
+	.comment {
+		display: inline-block;
+		background: #f6f7f8;
+		margin-left: -10px;
+		margin-bottom: 0px;
+		padding: 5px 10px;
+		width: 700px;
+		font-size: 12px;
+	}
+	.comment-name {
+		float: left;
+		margin-left: 10px;
+		margin-right: 4px;
+		font-weight: bold;
+		color: #3b5998;
+	}
+	.comment-pic {
+		width: 36px;
+		height: 36px;
+		float: left;
+		background: red;
+	}
+	.comment-text {
+		margin-left: 46px;
+		margin-bottom: 5px;
+	}
+	.comment-datelikes {
+		font-family: helvetica;
+		color: #898f9c;
+		float: left;
+		margin-left: 10px;
+	}
+	#checks {
+		width: 315px;
+		height: 60px;
+		float: left;
+		margin-left: 85px;
+		margin-top: 30px;
+		text-align: left;
+	}
+	.orderbutton {
+		background: rgb(250,170,40);
+		padding-left: 10px;
+		padding-right: 10px;
+		height: 40px;
+		font-size: 16px;
+		font-family: 'Londrina Solid';
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		float: left;
+		margin-right: 25px;
+		color: white;
+		margin-top: 10px;
+		text-align: center;
+		line-height: 40px;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+	.checktext {
+		color: white;
+		font-size: 14px;
+		font-family: 'lucida grande';
+		letter-spacing: 4px;
+	}
+	.selected {
+		background: #fff;
+		color: #000;
+	}
+	.hovered {
+		background: #fff;
+		color: rgb(250,170,40);
+	}
+	#footer {
+		font-family: 'lucida grande';
+		margin-top: 20px;
+		color: rgb(140,140,210);
+		text-align: center;
+		font-size: 12px;
+	}
+	#footer a {
+		text-decoration: underline;
+		color: rgb(180,180,250);
+	}
+	</style>
+	<script>
+		$(document).ready(function() {
+			$("#button").mouseenter(function() {
+				$(this).css('backgroundColor','#fff');
+				$(this).css('color','rgb(250,170,40)');
+				//$(this).animate({width: '155px', height: '45px', paddingLeft: '32px'}, "fast");
+			});
+			$("#button").mouseleave(function() {
+				$(this).css('backgroundColor','rgb(250,170,40)');
+				$(this).css('color','#fff');
+				//$(this).animate({width: '150px', height: '40px', paddingLeft: '27px'}, "fast");
+			});
+			$("#button").click(function() {
+				$("#startinfo").animate({marginLeft:'-2000px'},"fast");
+			})
+			$(".orderbutton").mouseenter(function() {
+				$(this).toggleClass('hovered');
+			})
+			$(".orderbutton").mouseleave(function() {
+				$(this).toggleClass('hovered');
+			})
+		});
+	</script>
+</head>
+<body>
+<div id="container">
+<div id="header"><a href="/?o={{ order }}"><span class="titleA">CLAREMONT</span><span class="titleB">CONFESSION</span><span class="titleA">GENERATOR</span></a></div>
+<div id ="checks">
+<span class="checktext">choose Markov chain order:</span>
+{% if order==1 %}
+<a href="/?o=1"><div class="orderbutton selected">first</div></a>
+{% else %}
+<a href="/?o=1"><div class="orderbutton">first</div></a>
+{% endif %}
+{% if order==2 %}
+<a href="/?o=2"><div class="orderbutton selected">second</div></a>
+{% else %}
+<a href="/?o=2"><div class="orderbutton">second</div></a>
+{% endif %}
+{% if order==3 %}
+<a href="/?o=3"><div class="orderbutton selected">third</div></a>
+{% else %}
+<a href="/?o=3"><div class="orderbutton">third</div></a>
+{% endif %}
+</div>
+
+<a href="/?o={{ order }}"><div id="button">GENERATE A NEW POST</div></a>
+<div class="confession">
+	<div class="con-pic"></div>
+	<div class="con-name">Claremont Confessions</div><br>
+	<div class="con-date">{{ date }}</div><div class="con-globe"></div><br>
+	<hr>
+	<div class="con-text">{{ status }}</div>
+	<div class="con-likes">{{ likes }} people like this.</div><br>
+
+	{% for com in comments %}
+	<div class="comment">
+		<div class="comment-pic"><img src="{{ com[1] }}"></div>
+		<div class="comment-name">{{ com[0] }}</div>
+		<div class="comment-text">{{ comments.get(com) }}</div>
+		<div class="comment-datelikes">April 12 at 10:47am</div>
+	</div><br>
+	{% endfor %}
+</div>
+
+<div id="footer">built by Reid Mitchell, Adam Waterbury, & Zac Wilson for the <a href="http://www.5chackathon.com/">5C Hackathon</a></div>
+
+</div>
+
+</body>
+</html>
